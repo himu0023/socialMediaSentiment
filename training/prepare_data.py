@@ -1,19 +1,18 @@
 import pandas as pd 
-from preprocessing.text_cleaner import clean_text 
+from preprocessing.text_cleaner import clean_text
 
-text_col = 3
-label_col = 2
-
-path = 'data/dataset.csv'
+path = 'data/twitter_training.csv'
 
 def load_dataset(path):
-    df = pd.read_csv(path, header=None)
+    df = pd.read_csv(path,
+                     header=None,
+                     names = ['id','entity','sentiment','text'],
+                     quotechar='"',
+                     encoding = "utf-8")
 
-    # Select only setiment + text 
-    df = df[[label_col, text_col]].dropna()
 
-    # Rename for consistency 
-    df.columns = ['sentiment', 'text']
+    # Keep only sentiment and text 
+    df= df[['sentiment', 'text']].dropna()
 
     # Normalize text 
     df['text'] = df['text'].astype(str).apply(clean_text)
