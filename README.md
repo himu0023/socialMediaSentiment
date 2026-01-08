@@ -73,3 +73,16 @@ File: training/tune_svm.py
   - Context-dependent language
 
 File: training/error_analysis.py
+
+
+### 8️⃣ Probability Calibration
+- Linear SVM does not provide probabilities by default
+- Applied **Platt scaling** using `CalibratedClassifierCV`
+- Enabled confidence scores for predictions
+
+File:training/calibrate_svm.py
+
+
+### 9️⃣ Inference
+Interactive CLI inference using the **calibrated SVM model**.
+File: main.py
